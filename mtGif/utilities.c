@@ -11,7 +11,7 @@ int isNameExists(FrameNode* head, char name[]) {
 	return FALSE;
 }
 
-int getsFrameDetails(FrameNode* head, char** path, unsigned int* duration, char** frameName) {
+int scanFrameDetails(FrameNode* head, char* path, unsigned int* duration, char* frameName) {
 	printf("*** Creating new frame ***\n");
 
 	printf("Please insert frame path:\n");
@@ -47,4 +47,33 @@ int isPathExists(char path[]) {
 	}
 	fclose(imgFile);
 	return TRUE;
+}
+/*
+int scanNewPositionNew(FramesList* list, char frameName[], int* newPosition) {
+	printf("Enter the name of the frame\n");
+	scanf("%s", frameName);
+	getchar();
+	if (!isNameExists(list, frameName)) {
+		printf("this frame does not exist\n");
+		return FALSE;
+	}
+
+	printf("Enter the new index in the movie you wish to place the frame\n");
+	scanf("%d", newPosition);
+	getchar();
+	
+	// checking validity
+	while (*newPosition < 1 || *newPosition > list->size) {
+		printf("The movie contains only %d frames!\n", list->size);
+		printf("Enter the new index in the movie you wish to place the frame\n");
+		scanf("%d", newPosition);
+		getchar();
+	}
+	return TRUE;
+}
+*/
+void getFrameName(char* name) {
+	printf("Enter the name of the frame\n");
+	scanf("%s", name);
+	getchar();
 }

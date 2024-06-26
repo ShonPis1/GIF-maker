@@ -8,7 +8,7 @@ int main(void) {
 	int act_choice;
 
 	if (program_choice == CREATE_PROJECT) {
-		printf("Working on a new project.\n\n");
+		printf("Working on a new project.\n");
 		FramesList* frames = createList();
 
 		do {

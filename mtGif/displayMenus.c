@@ -17,6 +17,7 @@ int programMenu() {
 int movieMenu() {
 	int choice = -1, scanRValue = 0;
 	do {
+		printf("\n");
 		printf("What would you like to do?\n");
 		printf(" [%d] Exit\n", EXIT);
 		printf(" [%d] Add new Frame\n", ADD);

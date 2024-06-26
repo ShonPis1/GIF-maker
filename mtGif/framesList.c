@@ -1,5 +1,7 @@
 #include "framesList.h"
 
+#define MAX_NAME_LEN 256
+
 FramesList* createList() {
 	FramesList* list = (FramesList*)malloc(sizeof(FramesList));
 	if (!list) {
@@ -14,6 +16,8 @@ FramesList* createList() {
 }
 
 void addFrameToList(FramesList* list, char name[], unsigned int duration, char path[]) {
+	if (!isPathExists(path)) return;
+
 	Frame* frame = createFrame(name, duration, path);
 	if (!frame) return;
 
@@ -58,3 +62,33 @@ void printList(FramesList* list) {
 
 	printf("NULL\n");
 }
+
+void removeFrame(FramesList* list, char name[]) {
+	FrameNode* currF = list->head;
+	FrameNode* prevF = NULL;
+
+	while (currF) {
+		if (strcmp(currF->frame->name, name) == 0) { // searching for the node
+			if (!prevF) {
+				// no previous node so removing the head
+				list->head = currF->next;
+				// if there is only head in the list 
+				if (currF == list->tail) list->tail = NULL;
+				destroyFrameNode(currF);
+			}
+			else {
+				prevF->next = currF->next;
+				if (currF == list->tail) {
+					list->tail = prevF;
+				}
+				destroyFrameNode(currF);
+			}
+			list->size--;
+			return;
+		}
+		prevF = currF;
+		currF = currF->next;
+	}
+	printf("The frame was not found\n");
+}
+

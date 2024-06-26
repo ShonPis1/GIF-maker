@@ -15,5 +15,8 @@ int isNameExists(FrameNode* head, char name[]);
 /**/
 int getsFrameDetails(FrameNode* head, char** path, unsigned int* duration, char** frameName);
 
+/**/
+int isPathExists(char path[]);
+
 #endif // !UTILITIES_OPERATIONS
 

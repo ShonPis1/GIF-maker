@@ -15,13 +15,10 @@ int getsFrameDetails(FrameNode* head, char** path, unsigned int* duration, char*
 	printf("*** Creating new frame ***\n");
 
 	printf("Please insert frame path:\n");
-	if (!fgets(path, MAX_STR_LEN, stdin)) { // checking if fgets successfully read the string
-		printf("failed to scan the path successfully");
-		return FALSE;
-	}
-	path[strcspn(path, NEWLINE_CHAR)] = NULL_CHAR; // removing the new lines char in the end of the string
-	
-	printf("Please insert frame duration(in miliseconds):\n");
+	scanf("%s", path);
+	getchar(); // cleaning the buffer 
+
+	printf("Please insevrt frame duration(in miliseconds):\n");
 	if (scanf("%u", duration) != 1) {
 		printf("invalid duration");
 		return FALSE;
@@ -29,20 +26,25 @@ int getsFrameDetails(FrameNode* head, char** path, unsigned int* duration, char*
 	getchar(); // cleaning the buffer
 
 	printf("Please choose a name for that frame:\n");
-	if (!fgets(frameName, MAX_STR_LEN, stdin)) { // checking if fgets successfully read the string
-		printf("failed to scan the frame name successfully");
-		return FALSE;
-	}
-	// checking if the name alreadt exists in the list 
+	scanf("%s", frameName);
+
+	// checking if the name already exists in the list 
 	while (isNameExists(head, frameName)) {
 		printf("The name is already taken, please enter another name\n");
-		if (!fgets(frameName, MAX_STR_LEN, stdin)) { // checking if fgets successfully read the string
-			printf("failed to scan the frame name successfully");
-			return FALSE;
-		}
+		scanf("%s", frameName);
 	}
-	
-	frameName[strcspn(frameName, NEWLINE_CHAR)] = NULL_CHAR; // removing the new lines char in the end of the string 
 
+	getchar(); // cleaning the buffer 
+
+	return TRUE;
+}
+
+int isPathExists(char path[]) {
+	FILE* imgFile = fopen(path, "r");
+	if (!imgFile) {
+		printf("Can't find file! Frame will not be added\n");
+		return FALSE;
+	}
+	fclose(imgFile);
 	return TRUE;
 }

@@ -2,6 +2,7 @@
 #define SAVE_AND_LOAD_PROJECT
 
 #include "framesList.h"
+#include "utilities.h"
 
 /*saved the project proccess with all it's frames
 inpit: the list, the file where the proccess will be saved

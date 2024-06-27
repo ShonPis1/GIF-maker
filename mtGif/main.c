@@ -2,12 +2,11 @@
 #include "linkedList.h"
 #include "framesList.h"
 #include "handleChoices.h"
-#include "saveAndLoad.h"
 
 int main(void) {
+	FramesList* frames = createList();
 	int program_choice = programMenu();
 	int act_choice;
-	FramesList* frames = createList();;
 	char savedPath[MAX_STR_LEN];
 	FILE* savedProject; 
 	char line[MAX_STR_LEN];
@@ -16,7 +15,6 @@ int main(void) {
 		printf("Working on a new project.\n");
 	}
 	else {
-		
 		printf("Enter the path of the project (including project name):\n");
 		scanf("%s", savedPath);
 		getchar();
@@ -28,6 +26,7 @@ int main(void) {
 		act_choice = movieMenu();
 		handleChoices(act_choice, frames);
 	} while (act_choice != EXIT);
+
 	printf("Bye Bye ;)");
 	destroyList(frames);
 

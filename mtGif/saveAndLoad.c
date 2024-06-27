@@ -29,7 +29,6 @@ void loadProject(FramesList* list, char* path) {
 	FILE* savedProject = fopen(path, "r");
 	if (!savedProject) {
 		printf("Error!- cant open file, creating a new project\n");
-		fclose(savedProject);
 		return;
 	}
 	else {
@@ -39,7 +38,9 @@ void loadProject(FramesList* list, char* path) {
 			// the format: %[^,],%u,%s.
 			// %[^,] is for getting all the chars until a ',' is occurred(the path's string)
 			sscanf(line, "%[^,],%u,%s", framePath, &duration, name);
-			addFrameToList(list, name, duration, framePath);
+			if (isPathExists(path)) {
+				addFrameToList(list, name, duration, framePath);
+			}
 		}
 		fclose(savedProject);
 	}

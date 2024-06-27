@@ -69,6 +69,7 @@ int getFrameName(FramesList* list, char* name) {
 	printf("Enter the name of the frame\n");
 	scanf("%s", name);
 	getchar();
+
 	if (!isNameExists(list, name)) {
 		printf("this frame does not exist\n");
 		return FALSE;

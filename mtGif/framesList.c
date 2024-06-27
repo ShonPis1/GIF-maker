@@ -43,13 +43,13 @@ void removeFrame(FramesList* list, char name[]) {
 				list->head = currF->next;
 				// if there is only head in the list 
 				if (currF == list->tail) list->tail = NULL;
+
 				destroyFrameNode(currF);
 			}
 			else {
 				prevF->next = currF->next;
-				if (currF == list->tail) {
-					list->tail = prevF;
-				}
+				if (currF == list->tail) list->tail = prevF;
+				
 				destroyFrameNode(currF);
 			}
 			list->size--;
@@ -96,6 +96,7 @@ void moveFrame(FramesList* list, char* frameName, int newPosition) {
 	previous = NULL; // the node before the current 
 	currentIndex = 1; 
 
+	// finding the the node at the new position and it's previous 
 	while (current && currentIndex < newPosition) {
 		previous = current;
 		current = current->next;

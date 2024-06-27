@@ -29,12 +29,14 @@ void handleChoices(int choice, FramesList* list) {
 
 	case CHANGE_DURATION:
 		if (!getFrameName(list->head, frameName)) break;
+
 		printf("Enter the new duration in milliseconds\n");
 		if (scanf("%u", &duration) != 1) {
 			printf("invalid duration\n");
 			break;
 		}
 		getchar();
+
 		changeFrameDuration(list, frameName, duration);
 		break;
 
@@ -45,6 +47,7 @@ void handleChoices(int choice, FramesList* list) {
 			break;
 		}
 		getchar();
+
 		changeFrameDuration(list, NULL, duration);
 		break;
 

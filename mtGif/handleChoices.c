@@ -5,10 +5,13 @@ void handleChoices(int choice, FramesList* list) {
 	unsigned int duration;
 	char frameName[MAX_STR_LEN];
 	int newPosition;
+	char pathToSave[MAX_STR_LEN];
+	FILE* fileToSave;
 
 	switch (choice) {
 	case ADD:
 		if (!scanFrameDetails(list->head, path, &duration, frameName)) break;
+		if (!isPathExists(path)) break;
 		addFrameToList(list, frameName, duration, path);
 		break;
 
@@ -16,51 +19,49 @@ void handleChoices(int choice, FramesList* list) {
 		printf("Enter the name of the frame you wish to erase\n");
 		scanf("%s", frameName);
 		getchar();
-
 		removeFrame(list, frameName);
 		break;
 
 	case CHANGE_INDEX:
-		printf("Enter the name of the frame\n");
-		scanf("%s", frameName);
-		getchar();
-
-		if (!isNameExists(list->head, frameName)) {
-			printf("this frame does not exist\n");
-			break;
-		}
-
-		printf("Enter the new index in the movie you wish to place the frame\n");
-		scanf("%d", &newPosition);
-		getchar();
-
-		// Validate new position
-		while (newPosition < 1 || newPosition > list->size) {
-			printf("The movie contains only %d frames!\n", list->size);
-			printf("Enter the new index in the movie you wish to place the frame\n");
-			scanf("%d", &newPosition);
-			getchar();
-		}
-
-		moveFrame(list, frameName, newPosition);
+		if (scanNewPosition(list, frameName, &newPosition))
+			moveFrame(list, frameName, newPosition);
 		break;
-	case CHANGE_DURATION:
-		printf("Enter the name of the frame\n");
-		scanf("%s", frameName);
-		getchar();
 
-		if (!isNameExists(list->head, frameName)) {
-			printf("this frame does not exist\n");
+	case CHANGE_DURATION:
+		if (!getFrameName(list->head, frameName)) break;
+		printf("Enter the new duration in milliseconds\n");
+		if (scanf("%u", &duration) != 1) {
+			printf("invalid duration\n");
 			break;
 		}
-		printf("Enter the new duration in milliseconds\n");
-		scanf("%u", &duration);
 		getchar();
 		changeFrameDuration(list, frameName, duration);
-
 		break;
+
 	case CHANGE_ALL_DURATION:
+		printf("Enter the new duration in milliseconds\n");
+		if (scanf("%u", &duration) != 1) {
+			printf("invalid duration\n");
+			break;
+		}
+		getchar();
+		changeFrameDuration(list, NULL, duration);
+		break;
+
+	case FRAMES_LIST:
 		printList(list);
+		break;
+
+	case PLAY:
+		play(list->head); 
+		break;
+
+	case SAVE:
+		printf("Enter the path of the project (including project name):\n");
+		scanf("%s", pathToSave);
+		getchar();
+		
+		saveProject(list, pathToSave);
 		break;
 	}
 }

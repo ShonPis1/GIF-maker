@@ -1,0 +1,16 @@
+C:\magshimim\s2\week12\mtGif\Gif\01.png,100,f01
+C:\magshimim\s2\week12\mtGif\Gif\02.png,100,f02
+C:\magshimim\s2\week12\mtGif\Gif\03.png,100,f03
+C:\magshimim\s2\week12\mtGif\Gif\04.png,100,f04
+C:\magshimim\s2\week12\mtGif\Gif\05.png,100,f05
+C:\magshimim\s2\week12\mtGif\Gif\06.png,100,f06
+C:\magshimim\s2\week12\mtGif\Gif\07.png,100,f07
+C:\magshimim\s2\week12\mtGif\Gif\08.png,100,f08
+C:\magshimim\s2\week12\mtGif\Gif\09.png,100,f09
+C:\magshimim\s2\week12\mtGif\Gif\10.png,100,f10
+C:\magshimim\s2\week12\mtGif\Gif\11.png,100,f11
+C:\magshimim\s2\week12\mtGif\Gif\12.png,100,f12
+C:\magshimim\s2\week12\mtGif\Gif\13.png,100,f13
+C:\magshimim\s2\week12\mtGif\Gif\14.png,100,f14
+C:\magshimim\s2\week12\mtGif\Gif\15.png,100,f15
+C:\magshimim\s2\week12\mtGif\Gif\16.png,100,f16

@@ -1,7 +1,5 @@
 #include "framesList.h"
 
-#define MAX_NAME_LEN 256
-
 FramesList* createList() {
 	FramesList* list = (FramesList*)malloc(sizeof(FramesList));
 	if (!list) {
@@ -16,8 +14,6 @@ FramesList* createList() {
 }
 
 void addFrameToList(FramesList* list, char name[], unsigned int duration, char path[]) {
-	if (!isPathExists(path)) return;
-
 	Frame* frame = createFrame(name, duration, path);
 	if (!frame) return;
 
@@ -65,15 +61,15 @@ void removeFrame(FramesList* list, char name[]) {
 	printf("The frame was not found\n");
 }
 
-void moveFrame(FramesList* list, const char* frameName, int newPosition) {
+void moveFrame(FramesList* list, char* frameName, int newPosition) {
 	FrameNode* current = list->head;
 	FrameNode* previous = NULL;
 	FrameNode* nodeToMove = NULL;
 	FrameNode* prevNodeToMove = NULL;
-	int currentIndex = 1;
+	int currentIndex;
 
-	// Find the node to move
-	while (current != NULL) {
+	// find the node to move
+	while (current) {
 		if (strcmp(current->frame->name, frameName) == 0) {
 			nodeToMove = current;
 			prevNodeToMove = previous;
@@ -81,15 +77,9 @@ void moveFrame(FramesList* list, const char* frameName, int newPosition) {
 		}
 		previous = current;
 		current = current->next;
-		currentIndex++;
 	}
 
-	if (!nodeToMove) {
-		printf("Frame not found.\n");
-		return;
-	}
-
-	// Remove the node from the current position
+	// remove the node from the current position
 	if (prevNodeToMove) {
 		prevNodeToMove->next = nodeToMove->next;
 	}
@@ -101,12 +91,12 @@ void moveFrame(FramesList* list, const char* frameName, int newPosition) {
 		list->tail = prevNodeToMove;
 	}
 
-	// Insert the node at the new position
-	current = list->head;
-	previous = NULL;
-	currentIndex = 1;
+	// insert the node at the new position
+	current = list->head; //the node at the new position 
+	previous = NULL; // the node before the current 
+	currentIndex = 1; 
 
-	while (current != NULL && currentIndex < newPosition) {
+	while (current && currentIndex < newPosition) {
 		previous = current;
 		current = current->next;
 		currentIndex++;
@@ -116,7 +106,7 @@ void moveFrame(FramesList* list, const char* frameName, int newPosition) {
 		previous->next = nodeToMove;
 	}
 	else {
-		list->head = nodeToMove;
+		list->head = nodeToMove; 
 	}
 
 	nodeToMove->next = current;
@@ -124,41 +114,37 @@ void moveFrame(FramesList* list, const char* frameName, int newPosition) {
 	if (newPosition == list->size) {
 		list->tail = nodeToMove;
 	}
-
-	printf("Frame moved successfully.\n");
 }
 
 void changeFrameDuration(FramesList* list, char* frameName, unsigned int newDuration) {
-	FrameNode* current = list->head;
-
-	while (current != NULL) {
-		if (strcmp(current->frame->name, frameName) == 0) {
-			current->frame->duration = newDuration;
-			return;
+	FrameNode* temp = list->head;
+	while (temp) {
+		if (frameName == NULL || strcmp(temp->frame->name, frameName) == 0) {
+			temp->frame->duration = newDuration;
+			if (frameName) break;
 		}
-		current = current->next;
+
+		temp = temp->next;
 	}
 }
 
-
 void printList(FramesList* list) {
-	if (!list) return;
-	printf("------FRAMES LIST (size=%d)------\n", list->size);
-	FrameNode* tmp = list->head;
+	printf("                Name            Duration        Path\n");
+	if (!list->head) return;
 
+	FrameNode* tmp = list->head;
 	while (tmp != NULL) {
-		printf("%s -> ", tmp->frame->name);
+		printf("                %s              %u ms         %s\n", 
+			tmp->frame->name, tmp->frame->duration, tmp->frame->path);
+
 		tmp = tmp->next;
 	}
-
-	printf("NULL\n");
 }
 
 void destroyList(FramesList* list) {
 	FrameNode* tmp = list->head;
 
 	// no need to free the tail seperately
-
 	while (list->head != NULL) {
 		tmp = list->head;
 		list->head = list->head->next;

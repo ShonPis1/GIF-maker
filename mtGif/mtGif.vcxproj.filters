@@ -30,13 +30,13 @@
     <ClCompile Include="linkedList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="programOperations.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="utilities.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framesList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="saveAndLoad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,13 +53,13 @@
     <ClInclude Include="handleChoices.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="programOperations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framesList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="saveAndLoad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

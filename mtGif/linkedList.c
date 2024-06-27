@@ -37,7 +37,6 @@ void destroyFrame(Frame* frame) {
     free(frame);
 }
 
-
 FrameNode* createFrameNode(Frame* frame) {
     FrameNode* newNode = (FrameNode*)malloc(sizeof(FrameNode));
     if (!newNode) {

@@ -147,8 +147,8 @@
     <ClCompile Include="framesList.c" />
     <ClCompile Include="handleChoices.c" />
     <ClCompile Include="linkedList.c" />
-    <ClCompile Include="programOperations.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="saveAndLoad.c" />
     <ClCompile Include="utilities.c" />
     <ClCompile Include="view.c" />
   </ItemGroup>
@@ -157,7 +157,7 @@
     <ClInclude Include="framesList.h" />
     <ClInclude Include="handleChoices.h" />
     <ClInclude Include="linkedList.h" />
-    <ClInclude Include="programOperations.h" />
+    <ClInclude Include="saveAndLoad.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="view.h" />
   </ItemGroup>
